@@ -1,0 +1,12 @@
+region = "us-west-2"
+eks_cluster_name = "test"
+env = "dev"
+vpc_id = "vpc-iddddd"
+ip_ranges=""
+subnet_ids = ["subnet-xxxx","subnet-xxxx"]
+instance_type = "m5.large"
+desired_size = 1
+max_size = 3
+min_size = 1
+access_key="ABBBBAAAAAA"
+secret_key="ZZZsssssqqqqqqqqqqq"
