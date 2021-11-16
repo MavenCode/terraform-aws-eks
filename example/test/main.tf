@@ -1,5 +1,5 @@
 module "eks-cluster" {
-    source = "github.com/CoterieAI/terraform-aws-eks"
+    source = "github.com/MavenCode/terraform-aws-eks"
 
     access_key = var.access_key
     secret_key = var.secret_key
