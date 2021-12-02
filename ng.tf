@@ -4,7 +4,7 @@ resource "aws_eks_node_group" "public" {
   node_role_arn   = aws_iam_role.node-group.arn
   subnet_ids      = var.subnet_ids
 
-  labels          = {
+  labels = {
     "type" = "public"
   }
 
@@ -66,12 +66,12 @@ resource "aws_iam_role_policy" "node-group-ClusterAutoscalerPolicy" {
     Statement = [
       {
         Action = [
-            "autoscaling:DescribeAutoScalingGroups",
-            "autoscaling:DescribeAutoScalingInstances",
-            "autoscaling:DescribeLaunchConfigurations",
-            "autoscaling:DescribeTags",
-            "autoscaling:SetDesiredCapacity",
-            "autoscaling:TerminateInstanceInAutoScalingGroup"
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeAutoScalingInstances",
+          "autoscaling:DescribeLaunchConfigurations",
+          "autoscaling:DescribeTags",
+          "autoscaling:SetDesiredCapacity",
+          "autoscaling:TerminateInstanceInAutoScalingGroup"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -87,10 +87,10 @@ resource "aws_security_group" "eks_nodes" {
   vpc_id      = var.vpc_id
 
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    self        = true
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    self      = true
   }
 
   ingress {
