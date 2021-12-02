@@ -1,6 +1,6 @@
 resource "aws_eks_node_group" "public" {
   cluster_name    = aws_eks_cluster.eks.name
-  node_group_name = "public-node-group-${var.env}"
+  node_group_name = "ng-${aws_eks_cluster.eks.name}"
   node_role_arn   = aws_iam_role.node-group.arn
   subnet_ids      = var.subnet_ids
 
@@ -29,8 +29,7 @@ resource "aws_eks_node_group" "public" {
 
 
 resource "aws_iam_role" "node-group" {
-  name = "eks-node-group-role-${var.env}"
-
+  name = "role-${aws_eks_cluster.eks.name}"
   assume_role_policy = jsonencode({
     Statement = [{
       Action = "sts:AssumeRole"
