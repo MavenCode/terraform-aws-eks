@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "eks" {
-  name     = "${var.eks_cluster_name}-${var.env}"
+  name     = var.eks_cluster_name
   role_arn = aws_iam_role.eks.arn
 
   vpc_config {
@@ -25,7 +25,7 @@ resource "aws_eks_cluster" "eks" {
 
 
 resource "aws_iam_role" "eks" {
-  name = "${var.eks_cluster_name}-${var.env}"
+  name = var.eks_cluster_name
 
   assume_role_policy = <<POLICY
 {
@@ -61,7 +61,7 @@ resource "aws_iam_role_policy_attachment" "eks-AmazonEKSVPCResourceController" {
 
 
 resource "aws_security_group" "eks_cluster" {
-  name        = "${var.eks_cluster_name}-${var.env}/ControlPlaneSecurityGroup"
+  name        = "${var.eks_cluster_name}/ControlPlaneSecurityGroup"
   description = "Communication between the control plane and worker nodegroups"
   vpc_id      = var.vpc_id
 
@@ -73,7 +73,7 @@ resource "aws_security_group" "eks_cluster" {
   }
 
   tags = {
-    Name        = "${var.eks_cluster_name}-${var.env}/ControlPlaneSecurityGroup"
+    Name        = "${var.eks_cluster_name}/ControlPlaneSecurityGroup"
     Environment = var.env
   }
 }
