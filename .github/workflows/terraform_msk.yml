@@ -32,9 +32,5 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
-      - name: "Terraform Plan"
-        id: plan
-        run: terraform plan -no-color
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
