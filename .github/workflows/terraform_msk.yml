@@ -1,0 +1,37 @@
+name: "Terraform GitHub Actions"
+
+on:
+  pull_request:
+    branches:
+      - "main"
+  push:
+    branches:
+      - "eks-git-action"
+
+jobs:
+  terraform:
+    name: "Terraform Init"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Setup Terraform"
+        uses: hashicorp/setup-terraform@v1
+
+      - name: "Checkout"
+        uses: actions/checkout@master
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+
+      - name: "Terraform Initialization"
+        id: init
+        run:  terraform init
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
