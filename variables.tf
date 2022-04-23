@@ -36,3 +36,5 @@ variable "access_key" {
 variable "secret_key" {
   description = "aws secret key"
 }
+
+variable "kubernetes_version" {}
